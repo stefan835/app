@@ -4,9 +4,10 @@ const UPDATE = 'tobuy/UPDATE';
 const MARK = 'tobuy/MARK';
 const UNMARK = 'tobuy/UNMARK';
 
-export const add = tobuyItem => ({
+export const add = (tobuyItem, isFav) => ({
   type: ADD,
-  tobuyItem
+  tobuyItem,
+  isFav
 });
 
 export const remove = itemId => ({
@@ -47,7 +48,7 @@ export default (state = initialState, action) => {
             0
           ) + 1,
           content: action.tobuyItem,
-          favorite: false
+          favorite: action.isFav || false
         })
       };
     case REMOVE:

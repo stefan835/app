@@ -22,7 +22,7 @@ class TobuyView extends React.Component {
     currentEditContent: event.target.value
   })
 
-  handleUpdate = event => {
+  handleUpdate = () => {
     this.props.updateTobuyItem(this.state.currentEditId, this.state.currentEditContent)
 
     this.setState({
@@ -45,10 +45,9 @@ class TobuyView extends React.Component {
     this.props.unmarkTobuyItem(itemId)
   }
 
-  handleAddFavorites = event => {
-    console.log(this.props.tobuyFavorites)
+  handleAddFavorites = () => {
     this.props.tobuyFavorites.map((favItem) => {
-      return this.props.addTobuyItem(favItem)
+      return this.props.addTobuyItem(favItem, true)
     })
   }
 
@@ -61,7 +60,7 @@ class TobuyView extends React.Component {
     })
   }
 
-  handleModalCloseClick = event => {
+  handleModalCloseClick = () => {
     this.setState({
       showModal: false,
       currentEditId: null
@@ -121,7 +120,7 @@ export default connect(
     tobuyFavorites: state.tobuy.tobuyFavorites
   }),
   dispatch => ({
-    addTobuyItem: TobuyItem => dispatch(add(TobuyItem)),
+    addTobuyItem: (tobuyItem, isFav) => dispatch(add(tobuyItem, isFav)),
     updateTobuyItem: (itemId, content) => dispatch(update(itemId, content)),
     removeTobuyItem: itemId => dispatch(remove(itemId)),
     markTobuyItem: itemId => dispatch(mark(itemId)),
