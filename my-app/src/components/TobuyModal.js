@@ -9,7 +9,7 @@ const TobuyModal = ({
                     }) => (
   <Modal.Dialog>
     <Modal.Header>
-      <Modal.Title>Edit tobuy item</Modal.Title>
+      <Modal.Title>Edytuj produkt</Modal.Title>
     </Modal.Header>
 
     <Modal.Body>
@@ -21,12 +21,12 @@ const TobuyModal = ({
     </Modal.Body>
 
     <Modal.Footer>
-      <Button onClick={handleCloseClick}>Close</Button>
+      <Button onClick={handleCloseClick}>Zamknij</Button>
       <Button
         bsStyle="primary"
         onClick={handleUpdateClick}
       >
-        Save changes
+        Zapisz zmiany
       </Button>
     </Modal.Footer>
 

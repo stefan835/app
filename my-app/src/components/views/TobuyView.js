@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {remove, update} from '../state/tobuy'
+import {remove, update, mark, unmark, add} from '../state/tobuy'
 
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
 import TobuyModal from '../TobuyModal'
 import Dragula from 'react-dragula';
+import {Button} from "react-bootstrap";
 
 
 class TobuyView extends React.Component {
@@ -14,7 +15,7 @@ class TobuyView extends React.Component {
   state = {
     showModal: false,
     currentEditId: null,
-    currentEditContent: null
+    currentEditContent: null,
   }
 
   handleEditChange = event => this.setState({
@@ -32,6 +33,23 @@ class TobuyView extends React.Component {
   handleRemoveClick = event => {
     const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
     this.props.removeTobuyItem(itemId)
+  }
+
+  handleMarkFavoriteClick = event => {
+    const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
+    this.props.markTobuyItem(itemId)
+  }
+
+  handleUnmarkFavoriteClick = event => {
+    const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
+    this.props.unmarkTobuyItem(itemId)
+  }
+
+  handleAddFavorites = event => {
+    console.log(this.props.tobuyFavorites)
+    this.props.tobuyFavorites.map((favItem) => {
+      return this.props.addTobuyItem(favItem)
+    })
   }
 
   handleEditClick = event => {
@@ -56,6 +74,7 @@ class TobuyView extends React.Component {
         <h1>Lista zakupów</h1>
 
         <TobuyAdditionForm/>
+        <Button onClick={this.handleAddFavorites}>Dodaj ulubione do listy</Button>
         {
           this.state.showModal ?
             <TobuyModal
@@ -75,6 +94,8 @@ class TobuyView extends React.Component {
                   item={item}
                   handleRemoveClick={this.handleRemoveClick}
                   handleEditClick={this.handleEditClick}
+                  handleMarkFavoriteClick={this.handleMarkFavoriteClick}
+                  handleUnmarkFavoriteClick={this.handleUnmarkFavoriteClick}
                 />
               )
             )
@@ -96,10 +117,14 @@ class TobuyView extends React.Component {
 
 export default connect(
   state => ({
-    tobuyItems: state.tobuy.tobuyItems
+    tobuyItems: state.tobuy.tobuyItems,
+    tobuyFavorites: state.tobuy.tobuyFavorites
   }),
   dispatch => ({
+    addTobuyItem: TobuyItem => dispatch(add(TobuyItem)),
     updateTobuyItem: (itemId, content) => dispatch(update(itemId, content)),
     removeTobuyItem: itemId => dispatch(remove(itemId)),
+    markTobuyItem: itemId => dispatch(mark(itemId)),
+    unmarkTobuyItem: itemId => dispatch(unmark(itemId)),
   })
 )(TobuyView)
