@@ -6,7 +6,6 @@ import {remove, update, mark, unmark, add} from '../state/tobuy'
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
 import TobuyModal from '../TobuyModal'
-import Dragula from 'react-dragula';
 import '../Tobuy.css'
 
 
@@ -88,7 +87,7 @@ class TobuyView extends React.Component {
           <button className={'btn-custom btn-blue'} onClick={this.handleAddFavorites}>Dodaj ulubione</button>
           <button className={'btn-custom btn-red'}>Wyczyśc</button>
         </div>
-        <ul className='tobuy--list' ref={this.dragulaDecorator}>
+        <ul className='tobuy--list'>
           {
             this.props.tobuyItems.map(
               item => (
@@ -110,13 +109,6 @@ class TobuyView extends React.Component {
       </div>
     )
   }
-
-  dragulaDecorator = (componentBackingInstance) => {
-    if (componentBackingInstance) {
-      let options = {};
-      Dragula([componentBackingInstance], options);
-    }
-  };
 }
 
 
