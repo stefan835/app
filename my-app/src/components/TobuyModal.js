@@ -1,6 +1,8 @@
 import React from 'react'
 import {Modal} from 'react-bootstrap'
 
+import Button from './Button'
+
 const TobuyModal = ({
                       content,
                       handleChange,
@@ -21,8 +23,16 @@ const TobuyModal = ({
     </Modal.Body>
 
     <Modal.Footer>
-      <button className={'btn-custom btn-red'} onClick={handleCloseClick}>Zamknij</button>
-      <button className={'btn-custom btn-blue'} onClick={handleUpdateClick}>Zapisz zmiany</button>
+      <Button
+        customHandlers={handleCloseClick}
+        buttonContent={'Zamknij'}
+        additionalClassName={'btn-red'}
+      />
+      <Button
+        customHandlers={handleUpdateClick}
+        buttonContent={'Zapisz zmiany'}
+        additionalClassName={'btn-blue'}
+      />
     </Modal.Footer>
 
   </Modal.Dialog>

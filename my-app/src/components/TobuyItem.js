@@ -1,5 +1,7 @@
 import React from 'react'
-import {button, Glyphicon} from 'react-bootstrap'
+import {Glyphicon} from 'react-bootstrap'
+
+import Button from './Button'
 
 const ToBuyItem = ({
                      item,
@@ -17,38 +19,34 @@ const ToBuyItem = ({
     <div className={'tobuy--list-item__buttons'}>
       {
         item.favorite ?
-          <button
-            className={'btn-custom btn-icon fav-added'}
-            data-item-id={item.id}
-            onClick={handleUnmarkFavoriteClick}
-          >
-            <Glyphicon glyph="glyphicon glyphicon-heart"/>
-          </button>
+          <Button
+            customHandlers={handleUnmarkFavoriteClick}
+            buttonContent={<Glyphicon glyph="glyphicon glyphicon-heart"/>}
+            additionalClassName={'btn-icon fav-added'}
+            itemId={item.id}
+          />
           :
-          <button
-
-            className={'btn-custom btn-icon'}
-            data-item-id={item.id}
-            onClick={handleMarkFavoriteClick}
-          >
-            <Glyphicon glyph="glyphicon glyphicon-heart"/>
-          </button>
+          <Button
+            customHandlers={handleMarkFavoriteClick}
+            buttonContent={<Glyphicon glyph="glyphicon glyphicon-heart"/>}
+            additionalClassName={'btn-icon'}
+            itemId={item.id}
+          />
       }
-      <button
-        className={'btn-custom btn-icon'}
-        data-item-id={item.id}
-        data-item-content={item.content}
-        onClick={handleEditClick}
-      >
-        <Glyphicon glyph="glyphicon glyphicon-edit"/>
-      </button>
-      <button
-        className={'btn-custom btn-icon'}
-        data-item-id={item.id}
-        onClick={handleRemoveClick}
-      >
-        <Glyphicon glyph="remove"/>
-      </button>
+      <Button
+        customHandlers={handleEditClick}
+        buttonContent={<Glyphicon glyph="glyphicon glyphicon-edit"/>}
+        additionalClassName={'btn-icon'}
+        itemId={item.id}
+        itemContent={item.content}
+      />
+      <Button
+        customHandlers={handleRemoveClick}
+        buttonContent={<Glyphicon glyph="remove"/>}
+        additionalClassName={'btn-icon'}
+        itemId={item.id}
+        itemContent={item.content}
+      />
     </div>
   </li>
 )

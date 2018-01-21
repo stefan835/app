@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Glyphicon} from 'react-bootstrap'
 
 import {add} from './state/tobuy'
+import Button from './Button'
 
 class TobuyAdditionForm extends React.Component {
 
@@ -33,10 +34,10 @@ class TobuyAdditionForm extends React.Component {
           value={this.state.incomingTobuy}
           onChange={this.handleChange}
         />
-        <button className={'btn-custom btn-icon'}>
-          <Glyphicon glyph="glyphicon glyphicon-plus"/>
-
-        </button>
+        <Button
+          buttonContent={<Glyphicon glyph="glyphicon glyphicon-plus"/>}
+          additionalClassName={'btn-icon'}
+        />
       </form>
     )
   }

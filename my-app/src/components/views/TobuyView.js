@@ -6,6 +6,7 @@ import {remove, update, mark, unmark, add} from '../state/tobuy'
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
 import TobuyModal from '../TobuyModal'
+import Button from '../Button'
 import '../Tobuy.css'
 
 
@@ -84,8 +85,15 @@ class TobuyView extends React.Component {
           }
         </div>
         <div className={'tobuy--container__buttons'}>
-          <button className={'btn-custom btn-blue'} onClick={this.handleAddFavorites}>Dodaj ulubione</button>
-          <button className={'btn-custom btn-red'}>Wyczyśc</button>
+          <Button
+            buttonContent={'Dodaj ulubione'}
+            additionalClassName={'btn-blue'}
+            customHandlers={this.handleAddFavorites}
+          />
+          <Button
+            buttonContent={'Wyczyśc'}
+            additionalClassName={'btn-red'}
+          />
         </div>
         <ul className='tobuy--list'>
           {
