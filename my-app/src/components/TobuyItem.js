@@ -18,7 +18,7 @@ const ToBuyItem = ({
       {
         item.favorite ?
           <button
-            className={'btn-custom fav-added'}
+            className={'btn-custom btn-icon fav-added'}
             data-item-id={item.id}
             onClick={handleUnmarkFavoriteClick}
           >
@@ -26,7 +26,8 @@ const ToBuyItem = ({
           </button>
           :
           <button
-            className={'btn-custom'}
+
+            className={'btn-custom btn-icon'}
             data-item-id={item.id}
             onClick={handleMarkFavoriteClick}
           >
@@ -34,7 +35,7 @@ const ToBuyItem = ({
           </button>
       }
       <button
-        className={'btn-custom'}
+        className={'btn-custom btn-icon'}
         data-item-id={item.id}
         data-item-content={item.content}
         onClick={handleEditClick}
@@ -42,7 +43,7 @@ const ToBuyItem = ({
         <Glyphicon glyph="glyphicon glyphicon-edit"/>
       </button>
       <button
-        className={'btn-custom'}
+        className={'btn-custom btn-icon'}
         data-item-id={item.id}
         onClick={handleRemoveClick}
       >
