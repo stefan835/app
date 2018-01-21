@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 
 const TobuyModal = ({
                       content,
@@ -21,13 +21,8 @@ const TobuyModal = ({
     </Modal.Body>
 
     <Modal.Footer>
-      <Button onClick={handleCloseClick}>Zamknij</Button>
-      <Button
-        bsStyle="primary"
-        onClick={handleUpdateClick}
-      >
-        Zapisz zmiany
-      </Button>
+      <button className={'btn-custom btn-red'} onClick={handleCloseClick}>Zamknij</button>
+      <button className={'btn-custom btn-blue'} onClick={handleUpdateClick}>Zapisz zmiany</button>
     </Modal.Footer>
 
   </Modal.Dialog>

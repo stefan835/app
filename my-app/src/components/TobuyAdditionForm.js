@@ -25,14 +25,14 @@ class TobuyAdditionForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={'tobuy--addition-form'} onSubmit={this.handleSubmit}>
         <input
           type="text"
           required
           value={this.state.incomingTobuy}
           onChange={this.handleChange}
         />
-        <button>Dodaj</button>
+        <button className={'btn btn-icon'}>+</button>
       </form>
     )
   }

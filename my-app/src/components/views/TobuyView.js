@@ -7,7 +7,7 @@ import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
 import TobuyModal from '../TobuyModal'
 import Dragula from 'react-dragula';
-import {Button} from "react-bootstrap";
+import '../Tobuy.css'
 
 
 class TobuyView extends React.Component {
@@ -69,22 +69,26 @@ class TobuyView extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Lista zakupów</h1>
+      <div className={'container tobuy--container'}>
+        <div className={'tobuy--header'}>
+          <h1>Lista zakupów</h1>
 
-        <TobuyAdditionForm/>
-        <Button onClick={this.handleAddFavorites}>Dodaj ulubione do listy</Button>
-        {
-          this.state.showModal ?
-            <TobuyModal
-              content={this.state.currentEditContent}
-              handleChange={this.handleEditChange}
-              handleCloseClick={this.handleModalCloseClick}
-              handleUpdateClick={this.handleUpdate}
-            /> : null
-        }
-
-        <ul className='container' ref={this.dragulaDecorator}>
+          <TobuyAdditionForm/>
+          {
+            this.state.showModal ?
+              <TobuyModal
+                content={this.state.currentEditContent}
+                handleChange={this.handleEditChange}
+                handleCloseClick={this.handleModalCloseClick}
+                handleUpdateClick={this.handleUpdate}
+              /> : null
+          }
+        </div>
+        <div className={'tobuy--container__buttons'}>
+          <button className={'btn-custom btn-blue'} onClick={this.handleAddFavorites}>Dodaj ulubione</button>
+          <button className={'btn-custom btn-red'}>Wyczyśc</button>
+        </div>
+        <ul className='tobuy--list' ref={this.dragulaDecorator}>
           {
             this.props.tobuyItems.map(
               item => (
@@ -100,7 +104,9 @@ class TobuyView extends React.Component {
             )
           }
         </ul>
-
+        <div className={'tobuy--footer'}>
+          Copyrights Ⓒ 2018
+        </div>
       </div>
     )
   }
