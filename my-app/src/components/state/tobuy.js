@@ -4,6 +4,7 @@ const UPDATE = 'tobuy/UPDATE';
 const MARK = 'tobuy/MARK';
 const UNMARK = 'tobuy/UNMARK';
 const LOAD = 'tobuy/LOAD';
+const CLEAR = 'tobuy/CLEAR';
 
 export const add = (tobuyItem, isFav) => ({
   type: ADD,
@@ -34,6 +35,9 @@ export const update = (itemId, content) => ({
 export const load = (items) => ({
   type: LOAD,
   items
+});
+export const clear = () => ({
+  type: CLEAR
 });
 
 const initialState = {
@@ -115,6 +119,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         tobuyItems: action.items
+      };
+    case CLEAR:
+      return {
+        ...state,
+        tobuyItems: []
       };
     default:
       return state

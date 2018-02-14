@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {remove, update, mark, unmark, add, load} from '../state/tobuy'
+import {remove, update, mark, unmark, add, load, clear} from '../state/tobuy'
 
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
@@ -84,6 +84,9 @@ class TobuyView extends React.Component {
       currentEditId: null
     })
   }
+  handleClearList = () => {
+    this.props.clearTobuyItems()
+  }
 
   render() {
     return (
@@ -111,6 +114,7 @@ class TobuyView extends React.Component {
           <Button
             buttonContent={'Wyczyśc'}
             additionalClassName={'btn-red'}
+            customHandlers={this.handleClearList}
           />
         </div>
         <ul className='tobuy--list'>
@@ -152,5 +156,6 @@ export default connect(
     markTobuyItem: itemId => dispatch(mark(itemId)),
     unmarkTobuyItem: itemId => dispatch(unmark(itemId)),
     loadTobuyItems: items => dispatch(load(items)),
+    clearTobuyItems: () => dispatch(clear()),
   })
 )(TobuyView)
