@@ -1,14 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {remove, update, mark, unmark, add} from '../state/tobuy'
+import {remove, update, mark, unmark, add, load} from '../state/tobuy'
 
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
 import TobuyModal from '../TobuyModal'
 import Button from '../Button'
 import '../Tobuy.css'
-
+import database from "../../database";
 
 class TobuyView extends React.Component {
 
@@ -18,12 +18,26 @@ class TobuyView extends React.Component {
     currentEditContent: null,
   }
 
+  componentWillMount() {
+    database
+      .ref('/items')
+      .once('value')
+      .then(
+        snapshot => {
+          this.props.loadTobuyItems(snapshot.val() || [])
+        }
+      ).catch((error) => {
+      console.log(error);
+    });
+  }
+
   handleEditChange = event => this.setState({
     currentEditContent: event.target.value
   })
 
   handleUpdate = () => {
-    this.props.updateTobuyItem(this.state.currentEditId, this.state.currentEditContent)
+    this.props.updateTobuyItem(this.state.currentEditId, this.state.currentEditContent);
+
 
     this.setState({
       showModal: false
@@ -33,22 +47,26 @@ class TobuyView extends React.Component {
   handleRemoveClick = event => {
     const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
     this.props.removeTobuyItem(itemId)
+
   }
 
   handleMarkFavoriteClick = event => {
     const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
     this.props.markTobuyItem(itemId)
+
   }
 
   handleUnmarkFavoriteClick = event => {
     const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
     this.props.unmarkTobuyItem(itemId)
+
   }
 
   handleAddFavorites = () => {
     this.props.tobuyFavorites.map((favItem) => {
       return this.props.addTobuyItem(favItem, true)
     })
+
   }
 
   handleEditClick = event => {
@@ -97,18 +115,21 @@ class TobuyView extends React.Component {
         </div>
         <ul className='tobuy--list'>
           {
-            this.props.tobuyItems.map(
-              item => (
-                <TobuyItem
-                  key={item.id}
-                  item={item}
-                  handleRemoveClick={this.handleRemoveClick}
-                  handleEditClick={this.handleEditClick}
-                  handleMarkFavoriteClick={this.handleMarkFavoriteClick}
-                  handleUnmarkFavoriteClick={this.handleUnmarkFavoriteClick}
-                />
+            this.props.tobuyItems ?
+              this.props.tobuyItems.map(
+                item => (
+                  <TobuyItem
+                    key={item.id}
+                    item={item}
+                    handleRemoveClick={this.handleRemoveClick}
+                    handleEditClick={this.handleEditClick}
+                    handleMarkFavoriteClick={this.handleMarkFavoriteClick}
+                    handleUnmarkFavoriteClick={this.handleUnmarkFavoriteClick}
+                  />
+                )
               )
-            )
+              :
+              null
           }
         </ul>
         <div className={'tobuy--footer'}>
@@ -118,7 +139,6 @@ class TobuyView extends React.Component {
     )
   }
 }
-
 
 export default connect(
   state => ({
@@ -131,5 +151,6 @@ export default connect(
     removeTobuyItem: itemId => dispatch(remove(itemId)),
     markTobuyItem: itemId => dispatch(mark(itemId)),
     unmarkTobuyItem: itemId => dispatch(unmark(itemId)),
+    loadTobuyItems: items => dispatch(load(items)),
   })
 )(TobuyView)

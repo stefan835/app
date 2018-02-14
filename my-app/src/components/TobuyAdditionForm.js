@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Glyphicon} from 'react-bootstrap'
 
 import {add} from './state/tobuy'
 import Button from './Button'
@@ -35,7 +34,7 @@ class TobuyAdditionForm extends React.Component {
           onChange={this.handleChange}
         />
         <Button
-          buttonContent={<Glyphicon glyph="glyphicon glyphicon-plus"/>}
+          buttonContent={<i className="material-icons icon-add">add_box</i>}
           additionalClassName={'btn-icon'}
         />
       </form>
@@ -44,7 +43,9 @@ class TobuyAdditionForm extends React.Component {
 }
 
 export default connect(
-  null,
+  state => ({
+    tobuyItems: state.tobuy.tobuyItems
+  }),
   dispatch => ({
     addTobuyItem: TobuyItem => dispatch(add(TobuyItem))
   })

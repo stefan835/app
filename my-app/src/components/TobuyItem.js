@@ -1,5 +1,4 @@
 import React from 'react'
-import {Glyphicon} from 'react-bootstrap'
 
 import Button from './Button'
 
@@ -21,28 +20,28 @@ const ToBuyItem = ({
         item.favorite ?
           <Button
             customHandlers={handleUnmarkFavoriteClick}
-            buttonContent={<Glyphicon glyph="glyphicon glyphicon-heart"/>}
+            buttonContent={<i className="material-icons">favorite</i>}
             additionalClassName={'btn-icon fav-added'}
             itemId={item.id}
           />
           :
           <Button
             customHandlers={handleMarkFavoriteClick}
-            buttonContent={<Glyphicon glyph="glyphicon glyphicon-heart"/>}
+            buttonContent={<i className="material-icons">favorite_border</i>}
             additionalClassName={'btn-icon'}
             itemId={item.id}
           />
       }
       <Button
         customHandlers={handleEditClick}
-        buttonContent={<Glyphicon glyph="glyphicon glyphicon-edit"/>}
+        buttonContent={<i className="material-icons">mode_edit</i>}
         additionalClassName={'btn-icon'}
         itemId={item.id}
         itemContent={item.content}
       />
       <Button
         customHandlers={handleRemoveClick}
-        buttonContent={<Glyphicon glyph="remove"/>}
+        buttonContent={<i className="material-icons">delete_forever</i>}
         additionalClassName={'btn-icon'}
         itemId={item.id}
         itemContent={item.content}

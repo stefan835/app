@@ -75,6 +75,7 @@ input {
     padding: 5px 10px;
     max-width: 500px;
     width: 100%;
+    word-wrap: break-word;
 }
 
 .tobuy--list-item__content {
@@ -153,8 +154,15 @@ input {
 }
 
 .btn-icon {
-    font-size: 18px;
     padding: 2px 10px;
+}
+
+.icon-add {
+    font-size: 44px;
+}
+
+.material-icons{
+    line-height: inherit;
 }
 
 .modal-content {
