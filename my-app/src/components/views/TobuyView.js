@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {remove, update, mark, unmark, add, load, clear} from '../state/tobuy'
+import {update,load, clear} from '../state/tobuy'
 
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
@@ -43,7 +43,6 @@ class TobuyView extends React.Component {
   handleUpdate = () => {
     this.props.updateTobuyItem(this.state.currentEditId, this.state.currentEditContent);
 
-
     this.setState({
       showModal: false
     })
@@ -57,12 +56,16 @@ class TobuyView extends React.Component {
 
   handleMarkFavoriteClick = event => {
     const itemId = event.currentTarget.dataset.itemId
-    this.props.markTobuyItem(itemId)
+    // this.props.markTobuyItem(itemId)
+    database.ref(`/items/${itemId}/favorite`).set(true)
+    this.dataFetch()
   }
 
   handleUnmarkFavoriteClick = event => {
     const itemId = event.currentTarget.dataset.itemId
-    this.props.unmarkTobuyItem(itemId)
+    // this.props.unmarkTobuyItem(itemId)
+    database.ref(`/items/${itemId}/favorite`).set(false)
+    this.dataFetch()
   }
 
   handleAddFavorites = () => {
@@ -152,11 +155,7 @@ export default connect(
     tobuyFavorites: state.tobuy.tobuyFavorites
   }),
   dispatch => ({
-    addTobuyItem: (tobuyItem, isFav) => dispatch(add(tobuyItem, isFav)),
     updateTobuyItem: (itemId, content) => dispatch(update(itemId, content)),
-    removeTobuyItem: itemId => dispatch(remove(itemId)),
-    markTobuyItem: itemId => dispatch(mark(itemId)),
-    unmarkTobuyItem: itemId => dispatch(unmark(itemId)),
     loadTobuyItems: items => dispatch(load(items)),
     clearTobuyItems: () => dispatch(clear()),
   })

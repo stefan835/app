@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {add, load} from './state/tobuy'
+import {load} from './state/tobuy'
 import Button from './Button'
 import database from "../database";
 
@@ -59,11 +59,8 @@ class TobuyAdditionForm extends React.Component {
 }
 
 export default connect(
-  state => ({
-    tobuyItems: state.tobuy.tobuyItems
-  }),
+  null,
   dispatch => ({
     loadTobuyItems: items => dispatch(load(items)),
-    addTobuyItem: TobuyItem => dispatch(add(TobuyItem))
   })
 )(TobuyAdditionForm)
