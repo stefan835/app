@@ -118,7 +118,12 @@ export default (state = initialState, action) => {
     case LOAD:
       return {
         ...state,
-        tobuyItems: action.items
+        tobuyItems: action.items ? Object.keys(action.items).map(function (key) {
+            action.items[key].id = key;
+            return action.items[key];
+          })
+          :
+          []
       };
     case CLEAR:
       return {

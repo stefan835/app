@@ -10,6 +10,7 @@ import Button from '../Button'
 import '../Tobuy.css'
 import database from "../../database";
 
+
 class TobuyView extends React.Component {
 
   state = {
@@ -18,17 +19,21 @@ class TobuyView extends React.Component {
     currentEditContent: null,
   }
 
-  componentWillMount() {
-    database
+  dataFetch = () => {
+    return database
       .ref('/items')
       .once('value')
       .then(
         snapshot => {
-          this.props.loadTobuyItems(snapshot.val() || [])
+          this.props.loadTobuyItems(snapshot.val() || {})
         }
       ).catch((error) => {
-      console.log(error);
-    });
+        console.log(error);
+      });
+  }
+
+  componentWillMount() {
+    this.dataFetch()
   }
 
   handleEditChange = event => this.setState({
@@ -45,32 +50,29 @@ class TobuyView extends React.Component {
   }
 
   handleRemoveClick = event => {
-    const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
-    this.props.removeTobuyItem(itemId)
-
+    const itemId = event.currentTarget.dataset.itemId
+    database.ref(`/items/${itemId}`).remove();
+    this.dataFetch()
   }
 
   handleMarkFavoriteClick = event => {
-    const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
+    const itemId = event.currentTarget.dataset.itemId
     this.props.markTobuyItem(itemId)
-
   }
 
   handleUnmarkFavoriteClick = event => {
-    const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
+    const itemId = event.currentTarget.dataset.itemId
     this.props.unmarkTobuyItem(itemId)
-
   }
 
   handleAddFavorites = () => {
     this.props.tobuyFavorites.map((favItem) => {
       return this.props.addTobuyItem(favItem, true)
     })
-
   }
 
   handleEditClick = event => {
-    const itemId = parseInt(event.currentTarget.dataset.itemId, 10)
+    const itemId = event.currentTarget.dataset.itemId
     this.setState({
       showModal: true,
       currentEditId: itemId,

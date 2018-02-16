@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {add} from './state/tobuy'
+import {add, load} from './state/tobuy'
 import Button from './Button'
+import database from "../database";
 
 class TobuyAdditionForm extends React.Component {
 
@@ -15,13 +16,28 @@ class TobuyAdditionForm extends React.Component {
   })
 
   handleSubmit = event => {
-    event.preventDefault()
-
-    this.props.addTobuyItem(this.state.incomingTobuy)
-
+    event.preventDefault();
+    database.ref('/items').push({
+      content: this.state.incomingTobuy,
+      favorite: false
+    })
+    this.dataFetch();
     this.setState({
       incomingTobuy: ''
     })
+  }
+
+  dataFetch = () => {
+    return database
+      .ref('/items')
+      .once('value')
+      .then(
+        snapshot => {
+          this.props.loadTobuyItems(snapshot.val() || {})
+        }
+      ).catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -47,6 +63,7 @@ export default connect(
     tobuyItems: state.tobuy.tobuyItems
   }),
   dispatch => ({
+    loadTobuyItems: items => dispatch(load(items)),
     addTobuyItem: TobuyItem => dispatch(add(TobuyItem))
   })
 )(TobuyAdditionForm)
