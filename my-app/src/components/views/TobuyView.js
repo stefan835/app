@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {update,load, clear} from '../state/tobuy'
+import {load, clear} from '../state/tobuy'
 
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
@@ -41,7 +41,9 @@ class TobuyView extends React.Component {
   })
 
   handleUpdate = () => {
-    this.props.updateTobuyItem(this.state.currentEditId, this.state.currentEditContent);
+
+    database.ref(`/items/${this.state.currentEditId}/content`).set(this.state.currentEditContent)
+    this.dataFetch()
 
     this.setState({
       showModal: false
@@ -56,14 +58,12 @@ class TobuyView extends React.Component {
 
   handleMarkFavoriteClick = event => {
     const itemId = event.currentTarget.dataset.itemId
-    // this.props.markTobuyItem(itemId)
     database.ref(`/items/${itemId}/favorite`).set(true)
     this.dataFetch()
   }
 
   handleUnmarkFavoriteClick = event => {
     const itemId = event.currentTarget.dataset.itemId
-    // this.props.unmarkTobuyItem(itemId)
     database.ref(`/items/${itemId}/favorite`).set(false)
     this.dataFetch()
   }
@@ -155,7 +155,6 @@ export default connect(
     tobuyFavorites: state.tobuy.tobuyFavorites
   }),
   dispatch => ({
-    updateTobuyItem: (itemId, content) => dispatch(update(itemId, content)),
     loadTobuyItems: items => dispatch(load(items)),
     clearTobuyItems: () => dispatch(clear()),
   })
