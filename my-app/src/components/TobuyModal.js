@@ -31,7 +31,7 @@ const TobuyModal = ({
       <Button
         customHandlers={handleUpdateClick}
         buttonContent={'Zapisz zmiany'}
-        additionalClassName={'btn-blue'}
+        additionalClassName={'btn-green'}
       />
     </Modal.Footer>
 

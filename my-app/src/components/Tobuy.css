@@ -23,7 +23,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #43b871;
+    background-color: #1fb6e8;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
@@ -101,13 +101,15 @@ input {
 }
 
 .modal-header {
-    background-color: #43b871;
+    /*background-color: #43b871;*/
+    background-color: #1fb6e8;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 
 .modal-footer {
-    background-color: #43b871;
+    /*background-color: #43b871;*/
+    background-color: #1fb6e8;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -138,14 +140,14 @@ input {
     font-size: 15px;
 }
 
-.btn.green {
+.btn-green {
     background-color: #43b871;
     border: solid 2px #43b871;
 }
 
 .btn-blue {
     border: solid 2px #1fb6e8;
-    background-color: #1fb6e8;
+background-color: #1fb6e8;
 }
 
 .btn-red {
@@ -176,7 +178,7 @@ input {
     align-items: center;
     height: 40px;
     width: 100%;
-    background-color: #43b871;
+    background-color: #1fb6e8;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
