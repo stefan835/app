@@ -22,6 +22,7 @@ const ToBuyItem = ({
             customHandlers={handleUnmarkFavoriteClick}
             buttonContent={<i className="material-icons">favorite</i>}
             additionalClassName={'btn-icon fav-added'}
+            itemContent={item.content}
             itemId={item.id}
           />
           :
@@ -29,6 +30,7 @@ const ToBuyItem = ({
             customHandlers={handleMarkFavoriteClick}
             buttonContent={<i className="material-icons">favorite_border</i>}
             additionalClassName={'btn-icon'}
+            itemContent={item.content}
             itemId={item.id}
           />
       }

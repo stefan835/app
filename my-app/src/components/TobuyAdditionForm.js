@@ -29,10 +29,11 @@ class TobuyAdditionForm extends React.Component {
 
   dataFetch = () => {
     return database
-      .ref('/items')
+      .ref('/')
       .once('value')
       .then(
         snapshot => {
+          console.log(snapshot.val())
           this.props.loadTobuyItems(snapshot.val() || {})
         }
       ).catch((error) => {

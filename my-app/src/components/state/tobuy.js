@@ -1,13 +1,22 @@
+const MARK = 'tobuy/MARK';
+const UNMARK = 'tobuy/UNMARK';
 const LOAD = 'tobuy/LOAD';
-const CLEAR = 'tobuy/CLEAR';
 
-export const load = (items) => ({
+export const mark = itemContent => ({
+  type: MARK,
+  itemContent
+});
+
+export const unmark = itemContent => ({
+  type: UNMARK,
+  itemContent
+});
+
+export const load = (data) => ({
   type: LOAD,
-  items
+  data
 });
-export const clear = () => ({
-  type: CLEAR
-});
+
 
 const initialState = {
   tobuyItems: [],
@@ -16,20 +25,33 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case MARK:
+      return {
+        ...state,
+        tobuyFavorites: state.tobuyFavorites.concat(action.itemContent).filter((value, index, inputArray) => {
+          return inputArray.indexOf(value) === index
+        })
+      };
+    case UNMARK:
+      return {
+        ...state,
+        tobuyFavorites: state.tobuyFavorites.filter(favItem => {
+          return favItem.itemContent !== action.itemContent
+        })
+      };
     case LOAD:
       return {
-        ...state,
-        tobuyItems: action.items ? Object.keys(action.items).map(function (key) {
-            action.items[key].id = key;
-            return action.items[key];
+        tobuyItems: action.data.items ?
+          Object.keys(action.data.items).map(function (key) {
+            action.data.items[key].id = key;
+            return action.data.items[key];
           })
           :
+          [],
+        tobuyFavorites: action.data.favoriteItems ?
+          action.data.favoriteItems.items.content
+          :
           []
-      };
-    case CLEAR:
-      return {
-        ...state,
-        tobuyItems: []
       };
     default:
       return state

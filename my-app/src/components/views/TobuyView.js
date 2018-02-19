@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {load, clear} from '../state/tobuy'
+import {mark, unmark, load} from '../state/tobuy'
 
 import TobuyAdditionForm from '../TobuyAdditionForm'
 import TobuyItem from '../TobuyItem'
@@ -17,15 +17,19 @@ class TobuyView extends React.Component {
     showModal: false,
     currentEditId: null,
     currentEditContent: null,
+    favoriteItems: null
   }
 
   dataFetch = () => {
     return database
-      .ref('/items')
+      .ref('/')
       .once('value')
       .then(
         snapshot => {
           this.props.loadTobuyItems(snapshot.val() || {})
+          this.setState({
+            favoriteItems: snapshot.val().favoriteItems ? snapshot.val().favoriteItems.items.content : []
+          })
         }
       ).catch((error) => {
         console.log(error);
@@ -41,10 +45,8 @@ class TobuyView extends React.Component {
   })
 
   handleUpdate = () => {
-
     database.ref(`/items/${this.state.currentEditId}/content`).set(this.state.currentEditContent)
     this.dataFetch()
-
     this.setState({
       showModal: false
     })
@@ -58,20 +60,30 @@ class TobuyView extends React.Component {
 
   handleMarkFavoriteClick = event => {
     const itemId = event.currentTarget.dataset.itemId
+    this.state.favoriteItems.push(event.currentTarget.dataset.itemContent)
     database.ref(`/items/${itemId}/favorite`).set(true)
-    this.dataFetch()
+    database.ref(`/favoriteItems/items/content`).set(this.state.favoriteItems)
+    this.dataFetch();
   }
 
   handleUnmarkFavoriteClick = event => {
     const itemId = event.currentTarget.dataset.itemId
+    this.state.favoriteItems = this.state.favoriteItems.filter(favItem => {
+      return favItem !== event.currentTarget.dataset.itemContent
+    })
     database.ref(`/items/${itemId}/favorite`).set(false)
+    database.ref(`/favoriteItems/items/content`).set(this.state.favoriteItems)
     this.dataFetch()
   }
 
   handleAddFavorites = () => {
-    this.props.tobuyFavorites.map((favItem) => {
-      return this.props.addTobuyItem(favItem, true)
+    this.state.favoriteItems.map((favItem) => {
+      return database.ref('/items').push({
+        content: favItem,
+        favorite: true
+      })
     })
+    this.dataFetch();
   }
 
   handleEditClick = event => {
@@ -90,7 +102,8 @@ class TobuyView extends React.Component {
     })
   }
   handleClearList = () => {
-    this.props.clearTobuyItems()
+    database.ref(`/items/`).set(null)
+    this.dataFetch()
   }
 
   render() {
@@ -155,7 +168,8 @@ export default connect(
     tobuyFavorites: state.tobuy.tobuyFavorites
   }),
   dispatch => ({
-    loadTobuyItems: items => dispatch(load(items)),
-    clearTobuyItems: () => dispatch(clear()),
+    markTobuyItem: itemId => dispatch(mark(itemId)),
+    unmarkTobuyItem: itemId => dispatch(unmark(itemId)),
+    loadTobuyItems: data => dispatch(load(data)),
   })
 )(TobuyView)
