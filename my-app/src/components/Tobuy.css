@@ -6,6 +6,11 @@ body {
     font-family: 'Bungee', cursive;
     display: flex;
     justify-content: center;
+    background: url("../img/background-list.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .tobuy--container {
@@ -13,8 +18,8 @@ body {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    color: #dbddde;
-    margin: 20% 0 0 0;
+    color: #282828;
+    padding: 20% 0;
     max-width: 500px;
 }
 
@@ -23,7 +28,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #1fb6e8;
+    background-color: #f5f5f5;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
@@ -34,13 +39,12 @@ body {
 
 input {
     font-size: 20px;
-    background-color: #dbddde;
     margin: 20px 0 20px 20px;
     padding: 2px 20px;
     border: 2px solid #dbddde;
     border-radius: 4px;
     box-sizing: border-box;
-    color: #40484a;
+    color: #282828;
     text-transform: uppercase;
     width: 70%;
 }
@@ -76,6 +80,7 @@ input {
     max-width: 500px;
     width: 100%;
     word-wrap: break-word;
+    color: #dbddde;
 }
 
 .tobuy--list-item__content {
@@ -101,15 +106,13 @@ input {
 }
 
 .modal-header {
-    /*background-color: #43b871;*/
-    background-color: #1fb6e8;
+    background-color: #f5f5f5;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 
 .modal-footer {
-    /*background-color: #43b871;*/
-    background-color: #1fb6e8;
+    background-color: #f5f5f5;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -123,7 +126,6 @@ input {
 .btn-custom {
     background-color: transparent;
     border: transparent;
-    color: #dbddde;
     user-select: none;
     border-radius: 5px;
     cursor: pointer;
@@ -138,6 +140,11 @@ input {
     text-transform: uppercase;
     padding: 2px 15px;
     font-size: 15px;
+    color: #282828;
+}
+
+.tobuy--list-item .btn-custom {
+    color: #dbddde;
 }
 
 .btn-green {
@@ -147,7 +154,7 @@ input {
 
 .btn-blue {
     border: solid 2px #1fb6e8;
-background-color: #1fb6e8;
+    background-color: #1fb6e8;
 }
 
 .btn-red {
@@ -163,7 +170,7 @@ background-color: #1fb6e8;
     font-size: 44px;
 }
 
-.material-icons{
+.material-icons {
     line-height: inherit;
 }
 
@@ -178,12 +185,12 @@ background-color: #1fb6e8;
     align-items: center;
     height: 40px;
     width: 100%;
-    background-color: #1fb6e8;
+    background-color: #f5f5f5;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-.fav-added {
+.tobuy--list-item .fav-added {
     color: #ff5252;
 }
 
