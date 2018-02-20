@@ -33,7 +33,6 @@ class TobuyAdditionForm extends React.Component {
       .once('value')
       .then(
         snapshot => {
-          console.log(snapshot.val())
           this.props.loadTobuyItems(snapshot.val() || {})
         }
       ).catch((error) => {
