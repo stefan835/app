@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
           Object.keys(action.data.items).map(function (key) {
             action.data.items[key].id = key;
             return action.data.items[key];
-          })
+          }).reverse()
           :
           [],
         tobuyFavorites: action.data.favoriteItems ?
