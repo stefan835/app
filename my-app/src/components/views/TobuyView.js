@@ -53,6 +53,7 @@ class TobuyView extends React.Component {
   }
 
   handleRemoveClick = event => {
+    event.currentTarget.parentElement.parentElement.classList.add('fadeOut')
     const itemId = event.currentTarget.dataset.itemId
     database.ref(`/items/${itemId}`).remove();
     this.dataFetch()

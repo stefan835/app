@@ -9,7 +9,7 @@ const ToBuyItem = ({
                      handleMarkFavoriteClick,
                      handleUnmarkFavoriteClick
                    }) => (
-  <li className={'tobuy--list-item'} key={item.id}>
+  <li className={'tobuy--list-item slideDown'} key={item.id}>
     <div className={'tobuy--list-item__content'}>
       {
         item.content

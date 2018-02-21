@@ -82,6 +82,9 @@ input {
     word-wrap: break-word;
     color: #dbddde;
 }
+.tobuy--list-item:hover {
+    background-color: #353535;
+}
 
 .tobuy--list-item__content {
     left: 0;
@@ -197,5 +200,36 @@ input {
 @media screen and (min-width: 425px) {
     .btn-custom {
         font-size: 22px;
+    }
+}
+
+.slideDown {
+    animation: slideDown 400ms forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 400ms forwards;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-200%);
+        opacity: 0;
+    }
+    80% {
+        transform: translateY(20%);
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
