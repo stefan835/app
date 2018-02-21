@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers|Bungee');
 
 body {
-    background-color: #262626;
     text-transform: uppercase;
     font-family: 'Bungee', cursive;
     display: flex;
@@ -35,6 +34,7 @@ body {
     margin: 15px auto;
     padding: 10px 10px;
     max-width: 500px;
+    box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
 input {
@@ -81,6 +81,7 @@ input {
     width: 100%;
     word-wrap: break-word;
     color: #dbddde;
+    box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
 .tobuy--list-item:hover {
@@ -145,6 +146,11 @@ input {
     padding: 2px 15px;
     font-size: 15px;
     color: #282828;
+    transition: 300ms;
+}
+
+.btn-custom:hover {
+    transform: translateY(-4px);
 }
 
 .tobuy--list-item .btn-custom {
@@ -154,16 +160,13 @@ input {
 .btn-green {
     background-color: #43b871;
     border: solid 2px #43b871;
-}
-
-.btn-blue {
-    border: solid 2px #1fb6e8;
-    background-color: #1fb6e8;
+    box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
 .btn-red {
     border: solid 2px #ff5252;
     background-color: #ff5252;
+    box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
 .btn-icon {
@@ -192,6 +195,7 @@ input {
     background-color: #f5f5f5;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
 .tobuy--list-item .fav-added {
