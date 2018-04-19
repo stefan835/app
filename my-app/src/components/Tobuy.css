@@ -17,7 +17,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     color: #f0f0f0;
-    padding: 20% 10px;
+    padding: 40px 10px;
     max-width: 500px;
 }
 
@@ -140,7 +140,7 @@ input {
     vertical-align: baseline;
     white-space: nowrap;
     padding: 2px 15px;
-    font-size: 15px;
+    font-size: 18px;
     color: #f0f0f0;
     transition: 300ms;
 }
@@ -201,6 +201,9 @@ input {
 @media screen and (min-width: 425px) {
     .btn-custom {
         font-size: 22px;
+    }
+    .tobuy--container {
+        padding: 20% 10px;
     }
 }
 
