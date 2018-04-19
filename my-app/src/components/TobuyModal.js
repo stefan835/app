@@ -26,12 +26,12 @@ const TobuyModal = ({
       <Button
         customHandlers={handleCloseClick}
         buttonContent={'Zamknij'}
-        additionalClassName={'btn-red'}
+        additionalClassName={'btn-decline'}
       />
       <Button
         customHandlers={handleUpdateClick}
         buttonContent={'Zapisz zmiany'}
-        additionalClassName={'btn-green'}
+        additionalClassName={'btn-confirm'}
       />
     </Modal.Footer>
 

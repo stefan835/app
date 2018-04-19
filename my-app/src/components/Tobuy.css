@@ -5,7 +5,7 @@ body {
     font-family: 'Bungee', cursive;
     display: flex;
     justify-content: center;
-    background: url("../img/background-list.jpg");
+    background-image: linear-gradient(to bottom, #288ad6, #282828);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -17,7 +17,7 @@ body {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    color: #282828;
+    color: #f0f0f0;
     padding: 20% 0;
     max-width: 500px;
 }
@@ -27,7 +27,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f5f5f5;
+    background-color: #282828;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
@@ -41,7 +41,7 @@ input {
     font-size: 20px;
     margin: 20px 0 20px 20px;
     padding: 2px 20px;
-    border: 2px solid #dbddde;
+    border: 2px solid #f0f0f0;
     border-radius: 4px;
     box-sizing: border-box;
     color: #282828;
@@ -71,7 +71,7 @@ input {
     flex-direction: row;
     align-items: center;
     list-style: none;
-    background-color: #404040;
+    background-color: #99a9b3;
     font-size: 22px;
     position: relative;
     min-height: 45px;
@@ -80,12 +80,12 @@ input {
     max-width: 500px;
     width: 100%;
     word-wrap: break-word;
-    color: #dbddde;
+    color: #f0f0f0;
     box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
 .tobuy--list-item:hover {
-    background-color: #353535;
+    background-color: #282828;
 }
 
 .tobuy--list-item__content {
@@ -111,13 +111,13 @@ input {
 }
 
 .modal-header {
-    background-color: #f5f5f5;
+    background-color: #282828;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 
 .modal-footer {
-    background-color: #f5f5f5;
+    background-color: #282828;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -145,7 +145,7 @@ input {
     text-transform: uppercase;
     padding: 2px 15px;
     font-size: 15px;
-    color: #282828;
+    color: #f0f0f0;
     transition: 300ms;
 }
 
@@ -154,16 +154,16 @@ input {
 }
 
 .tobuy--list-item .btn-custom {
-    color: #dbddde;
+    color: #f0f0f0;
 }
 
-.btn-green {
-    background-color: #43b871;
-    border: solid 2px #43b871;
+.btn-confirm {
+    background-color: #288ad6;
+    border: solid 2px #288ad6;
     box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
 }
 
-.btn-red {
+.btn-decline {
     border: solid 2px #ff5252;
     background-color: #ff5252;
     box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)
@@ -182,7 +182,7 @@ input {
 }
 
 .modal-content {
-    background-color: #404040;
+    background-color: #99a9b3;
     border-radius: 15px;
 }
 
@@ -192,7 +192,7 @@ input {
     align-items: center;
     height: 40px;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #282828;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: 0 20px 25px -10px rgba(0, 0, 0, 0.2)

@@ -127,12 +127,12 @@ class TobuyView extends React.Component {
         <div className={'tobuy--container__buttons'}>
           <Button
             buttonContent={'Dodaj ulubione'}
-            additionalClassName={'btn-green'}
+            additionalClassName={'btn-confirm'}
             customHandlers={this.handleAddFavorites}
           />
           <Button
             buttonContent={'Wyczyśc'}
-            additionalClassName={'btn-red'}
+            additionalClassName={'btn-decline'}
             customHandlers={this.handleClearList}
           />
         </div>
