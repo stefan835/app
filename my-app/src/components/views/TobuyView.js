@@ -131,7 +131,7 @@ class TobuyView extends React.Component {
             customHandlers={this.handleAddFavorites}
           />
           <Button
-            buttonContent={'Wyczyśc'}
+            buttonContent={'Wyczyść'}
             additionalClassName={'btn-decline'}
             customHandlers={this.handleClearList}
           />
